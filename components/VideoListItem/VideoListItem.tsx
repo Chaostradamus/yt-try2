@@ -65,7 +65,7 @@ const VideoListItem = (props: VideoListItemProps) => {
         <Image
           style={styles.avatar}
           source={{
-            uri: video.user.image,
+            uri: video.user?.image,
           }}
         />
 
@@ -73,7 +73,7 @@ const VideoListItem = (props: VideoListItemProps) => {
         <View style={styles.midleContainer}>
           <Text style={styles.title}>{video.title}</Text>
           <Text style={styles.subtitle}>
-            {video.user.name}
+            {video.user?.name || "No name"}
             {/* {viewsString} */}
             {video.views} {video.createdAt}
           </Text>
