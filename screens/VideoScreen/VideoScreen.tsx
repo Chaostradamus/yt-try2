@@ -9,27 +9,23 @@ import {
   Pressable,
   ActivityIndicator,
 } from "react-native";
-
-import { useRoute } from "@react-navigation/native";
-
 import {
   BottomSheetModalProvider,
   BottomSheetModal,
 } from "@gorhom/bottom-sheet";
+import { useRoute } from "@react-navigation/native";
+import { DataStore } from "aws-amplify";
+import { Video, Comment } from "../../src/models";
+
 import styles from "./styles";
 import VideoListItem from "../../components/VideoListItem";
 import VideoPlayer from "../../components/VideoPlayer";
 
-// import video from "../../assets/data/video.json";
 import videos from "../../assets/data/videos.json";
 
 import { AntDesign } from "@expo/vector-icons";
-// import comments from "../../assets/data/comments.json";
 import VideoComments from "../../components/VideoComments";
 import VideoComment from "../../components/VideoComment";
-import { Video, Comment } from "../../src/models";
-
-import { DataStore } from "aws-amplify";
 
 const VideoScreen = () => {
   const [video, setVideo] = useState<Video | undefined>(undefined);
@@ -46,9 +42,11 @@ const VideoScreen = () => {
       if (!video) {
         return;
       }
+
       const videoComments = (await DataStore.query(Comment)).filter(
         (comment) => comment.videoID === video.id
       );
+
       setComments(videoComments);
     };
 

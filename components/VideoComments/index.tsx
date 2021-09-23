@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Pressable } from "react-native";
 import { BottomSheetFlatList } from "@gorhom/bottom-sheet";
-import VideoComment from "../VideoComment";
 import { Feather } from "@expo/vector-icons";
 import { DataStore, Auth } from "aws-amplify";
 import { Comment } from "../../src/models";
+
+import VideoComment from "../VideoComment";
 
 interface VideoCommentsProps {
   comments: Comment[];
@@ -40,7 +41,7 @@ const VideoComments = ({ comments, videoID }: VideoCommentsProps) => {
         }}
       >
         <TextInput
-          placeholder="what do you think"
+          placeholder="what do you think?"
           value={newComment}
           onChangeText={setNewComment}
           placeholderTextColor="grey"
