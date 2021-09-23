@@ -4,21 +4,10 @@ import { Entypo } from "@expo/vector-icons";
 import styles from "./styles";
 
 import { useNavigation } from "@react-navigation/native";
+import { Video } from "../../src/models";
 
 type VideoListItemProps = {
-  video: {
-    id: string;
-    createdAt: string;
-    title: string;
-    thumbnail: string;
-    videoUrl: string;
-    duration: number;
-    views: number;
-    user: {
-      name: string;
-      image?: string;
-    };
-  };
+  video: Video
 };
 
 const VideoListItem = (props: VideoListItemProps) => {
@@ -65,7 +54,7 @@ const VideoListItem = (props: VideoListItemProps) => {
         <Image
           style={styles.avatar}
           source={{
-            uri: video.user?.image,
+            uri: video.User?.image,
           }}
         />
 
@@ -73,7 +62,7 @@ const VideoListItem = (props: VideoListItemProps) => {
         <View style={styles.midleContainer}>
           <Text style={styles.title}>{video.title}</Text>
           <Text style={styles.subtitle}>
-            {video.user?.name || "No name"}
+            {video.User?.name || "No name"}
             {/* {viewsString} */}
             {video.views} {video.createdAt}
           </Text>

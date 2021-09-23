@@ -9,11 +9,8 @@ const HomeScreen = () => {
   const [videos, setVideos] = useState<Video[]>([]);
 
   useEffect(() => {
-    const fetchVideos = async () => {
-      const response = await DataStore.query(Video);
-      setVideos(response);
-    };
-    fetchVideos();
+   
+    DataStore.query(Video).then(setVideos)
   }, []);
 
   return (
