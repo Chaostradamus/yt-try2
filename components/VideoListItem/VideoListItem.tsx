@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, Image, Pressable } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import styles from "./styles";
+import { Storage } from "aws-amplify";
 
 import { useNavigation } from "@react-navigation/native";
 import { Video } from "../../src/models";
 
 type VideoListItemProps = {
-  video: Video
+  video: Video;
 };
 
 const VideoListItem = (props: VideoListItemProps) => {
   const { video } = props;
+  const [image, setImage] = useState<string | null>(null);
+
   //   const minutes = Math.floor(video.duration / 60);
   //   const seconds = video.duration % 60;
 
@@ -24,6 +27,14 @@ const VideoListItem = (props: VideoListItemProps) => {
 
   const navigation = useNavigation();
 
+  useEffect(() => {
+    if (video.thumbnail.startsWith("http")) {
+      setImage(video.thumbnail);
+    } else {
+      Storage.get(video.thumbnail).then(setImage);
+    }
+  }, [video]);
+
   const openVideoPage = () => {
     navigation.navigate("VideoScreen", { id: video.id });
   };
@@ -35,7 +46,7 @@ const VideoListItem = (props: VideoListItemProps) => {
         <Image
           style={styles.thumbnail}
           source={{
-            uri: video.thumbnail,
+            uri: image || "",
           }}
         />
         <View style={styles.timeContainer}>

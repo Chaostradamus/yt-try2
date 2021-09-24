@@ -7475,6 +7475,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-image-picker@npm:~10.1.4":
+  version: 10.1.4
+  resolution: "expo-image-picker@npm:10.1.4"
+  dependencies:
+    "@expo/config-plugins": ^1.0.18
+    expo-permissions: ~12.0.1
+    unimodules-permissions-interface: ~6.1.0
+    uuid: 7.0.2
+  checksum: 4ca1dc32bfb45efe90f6cb228f1ae1f2480c5352c8217f3c6a3aef890372703584d7922aa84ebe6341047e05eef310dde8a59074028c18424bb009fe1ff90292
+  languageName: node
+  linkType: hard
+
 "expo-keep-awake@npm:~9.1.2":
   version: 9.1.2
   resolution: "expo-keep-awake@npm:9.1.2"
@@ -7494,6 +7506,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-permissions@npm:~12.0.1":
+  version: 12.0.1
+  resolution: "expo-permissions@npm:12.0.1"
+  checksum: 283886324b5d8b2767b84a40fa2e30ffcc9b9a66fbecc0aede4ce606c972c0a01c3c5fa0b60b873edca01e5a05f819e6bac6a486e2bf6e6d2e720544469af401
+  languageName: node
+  linkType: hard
+
 "expo-splash-screen@npm:~0.10.2":
   version: 0.10.2
   resolution: "expo-splash-screen@npm:0.10.2"
@@ -7507,6 +7526,13 @@ __metadata:
   version: 1.0.4
   resolution: "expo-status-bar@npm:1.0.4"
   checksum: 7a9894b6c11d4585809cba6a3ec7a2247daa16d28db9fcb86319e9786013a38e067a6a3351da3806f91d3c4d5ae01b887029b7605137dfc9d4a9ff15b6ee88e6
+  languageName: node
+  linkType: hard
+
+"expo-video-thumbnails@npm:~5.1.0":
+  version: 5.1.0
+  resolution: "expo-video-thumbnails@npm:5.1.0"
+  checksum: 44e1bc7212b2ea086bd8b5b19b28532fa4e76cdfee56fdcace6df9c4a6fca083dc9f8c86b759c43d004260bb384a8edee15e45af4c92e43e93f7e7d548f12ceb
   languageName: node
   linkType: hard
 
@@ -12067,7 +12093,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"react-native-get-random-values@npm:^1.4.0":
+"react-native-get-random-values@npm:^1.4.0, react-native-get-random-values@npm:^1.7.0":
   version: 1.7.0
   resolution: "react-native-get-random-values@npm:1.7.0"
   dependencies:
@@ -12662,20 +12688,24 @@ resolve@1.1.7:
     expo-av: ~9.1.2
     expo-constants: ~10.1.3
     expo-font: ~9.1.0
+    expo-image-picker: ~10.1.4
     expo-linking: ~2.2.3
     expo-splash-screen: ~0.10.2
     expo-status-bar: ~1.0.4
+    expo-video-thumbnails: ~5.1.0
     expo-web-browser: ~9.1.0
     jest-expo: ~41.0.0
     react: 16.13.1
     react-dom: 16.13.1
     react-native: "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz"
     react-native-gesture-handler: ^1.10.3
+    react-native-get-random-values: ^1.7.0
     react-native-reanimated: ^2.2.2
     react-native-safe-area-context: 3.2.0
     react-native-screens: ~3.0.0
     react-native-web: ~0.13.12
     typescript: ~4.0.0
+    uuid: ^8.3.2
   languageName: unknown
   linkType: soft
 
@@ -14183,6 +14213,15 @@ typescript@~4.0.0:
   languageName: node
   linkType: hard
 
+"uuid@npm:7.0.2":
+  version: 7.0.2
+  resolution: "uuid@npm:7.0.2"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: f80af114b67e1f66020c70897be9ba889b1996fbfde8fc46eb7405e95d3448908a793bab36d16d11a082a16ca7e1d27ab5203e505dd3c1bab7efbb647bd94823
+  languageName: node
+  linkType: hard
+
 "uuid@npm:^3.0.0, uuid@npm:^3.2.1, uuid@npm:^3.3.2, uuid@npm:^3.4.0":
   version: 3.4.0
   resolution: "uuid@npm:3.4.0"
@@ -14198,6 +14237,15 @@ typescript@~4.0.0:
   bin:
     uuid: dist/bin/uuid
   checksum: f5b7b5cc28accac68d5c083fd51cca64896639ebd4cca88c6cfb363801aaa83aa439c86dfc8446ea250a7a98d17afd2ad9e88d9d4958c79a412eccb93bae29de
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^8.3.2":
+  version: 8.3.2
+  resolution: "uuid@npm:8.3.2"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 5575a8a75c13120e2f10e6ddc801b2c7ed7d8f3c8ac22c7ed0c7b2ba6383ec0abda88c905085d630e251719e0777045ae3236f04c812184b7c765f63a70e58df
   languageName: node
   linkType: hard
 
