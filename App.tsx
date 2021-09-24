@@ -27,6 +27,21 @@ function App() {
         return;
       }
       const userId = userInfo.attributes.sub;
+
+      const user = (await DataStore.query(User)).find(
+        (user) => user.sub === userId
+      );
+      if (!user) {
+        await DataStore.save(
+          new User({
+            sub: userId,
+            name: userInfo.attributes.email,
+            subscribers: 0,
+          })
+        );
+      } else {
+        console.warn("User already exists in DB");
+      }
     };
     saveUserToDB;
   }, []);
