@@ -18,6 +18,7 @@ export default function VideoUploadScreen() {
   const [title, setTitle] = useState("");
 
   const navigation = useNavigation();
+  const [progress, setProgress] = useState(0.25);
 
   useEffect(() => {
     (async () => {
@@ -56,7 +57,12 @@ export default function VideoUploadScreen() {
       const response = await fetch(uri);
       const blob = await response.blob();
       const fileKey = `${uuidv4()}.jpg`;
-      await Storage.put("fileKey", blob);
+      await Storage.put("fileKey", blob, {
+        progressCallback: (p) => {
+          console.log(p);
+          setProgress(p.loaded / p.total);
+        },
+      });
       return fileKey;
     } catch (err) {
       console.log("Error uploading file:", err);
@@ -110,8 +116,9 @@ export default function VideoUploadScreen() {
     setVideo(null);
     setDuration(0);
     setTitle("");
+    setProgress(0);
 
-    Navigation.navigate("Home");
+    navigation.navigate("Home");
   };
 
   return (
@@ -132,6 +139,14 @@ export default function VideoUploadScreen() {
       />
 
       <Button title="Upload" onPress={uploadPost} />
+
+      <View
+        style={{
+          width: `${progress * 100}%`,
+          height: 3,
+          backgroundColor: "blue",
+        }}
+      />
     </View>
   );
 }

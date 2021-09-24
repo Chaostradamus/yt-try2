@@ -29,6 +29,7 @@ import VideoComment from "../../components/VideoComment";
 
 const VideoScreen = () => {
   const [video, setVideo] = useState<Video | undefined>(undefined);
+  const [videoUrl, setVideoUrl] = useState<string | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
   const route = useRoute();
   const videoId = route.params?.id;
@@ -36,6 +37,14 @@ const VideoScreen = () => {
   useEffect(() => {
     DataStore.query(Video, videoId).then(setVideo);
   }, [videoId]);
+
+  useEffect (() => {
+    if (video?.videoUrl.startsWith('http')) {
+      setVideoUrl(video.videoUrl);
+    } else {
+      Storage.get(video.videoUrl).then(setVideo);
+    }
+  }, [video])
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -65,7 +74,7 @@ const VideoScreen = () => {
 
   return (
     <View style={{ backgroundColor: "#141414", flex: 1 }}>
-      <VideoPlayer videoURI={video.videoUrl} thumbnailURI={video.thumbnail} />
+      <VideoPlayer videoURI={videoUrl} thumbnailURI={video.thumbnail} />
 
       <View style={{ flex: 1 }}>
         <View style={styles.videoInfoContainer}>
