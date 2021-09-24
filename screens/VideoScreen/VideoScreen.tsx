@@ -14,7 +14,7 @@ import {
   BottomSheetModal,
 } from "@gorhom/bottom-sheet";
 import { useRoute } from "@react-navigation/native";
-import { DataStore } from "aws-amplify";
+import { DataStore, Storage } from "aws-amplify";
 import { Video, Comment } from "../../src/models";
 
 import styles from "./styles";
@@ -30,6 +30,7 @@ import VideoComment from "../../components/VideoComment";
 const VideoScreen = () => {
   const [video, setVideo] = useState<Video | undefined>(undefined);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const [image, setImage] = useState<string | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
   const route = useRoute();
   const videoId = route.params?.id;
@@ -38,13 +39,21 @@ const VideoScreen = () => {
     DataStore.query(Video, videoId).then(setVideo);
   }, [videoId]);
 
-  useEffect (() => {
-    if (video?.videoUrl.startsWith('http')) {
+  useEffect(() => {
+    if (!video) {
+      return;
+    }
+    if (video?.videoUrl.startsWith("http")) {
       setVideoUrl(video.videoUrl);
     } else {
       Storage.get(video.videoUrl).then(setVideo);
     }
-  }, [video])
+    if (video?.thumbnail.startsWith("http")) {
+      setImage(video.thumbnail);
+    } else {
+      Storage.get(video.thumbnail).then(setImage);
+    }
+  }, [video]);
 
   useEffect(() => {
     const fetchComments = async () => {
